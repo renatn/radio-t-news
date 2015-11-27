@@ -24,11 +24,49 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,thin,medium&amp;lang=ru">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
 
-    <!--build:css assets/styles/style.min.css -->
-    <link rel="stylesheet" href="./node_modules/material-design-lite/material.css">
-    <link rel="stylesheet" href="assets/styles/style.css">
-    <!--endbuild-->     
+    <style type="text/css">
+     .app #add {
+            position: absolute;
+            z-index: 999;
+            right: 40px;
+            bottom: -24px;
+        }
+        .app-layout {
+            max-width: 960px;
+            margin: 0 auto;
+            padding-top: 24px;
+            width: 100%;
+            flex-shrink: 0;
+            display: block;
+        }
+        .app-header {
+            position: relative;
+        }
+        .app .news-card {
+            min-height: 168px;
+        }
+        .app .mdl-layout__tab-bar {
+            width: 100%;
+            padding: 0 0 0 16px;
+        }
+        .app .news_card__details {
+            font-size: 16px;
+        }
+        .app .news_card__actions {
+            display: flex;
+        }
+        .app .news-card__links {
+            display: flex;
+            margin-top: 16px;
+        }
+        .app .news-card__title-link {
+            padding-left: 16px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+    </style>
 
 </head>
 <body class="app mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -55,7 +93,13 @@
             </header>
             <main class="app-layout mdl-layout__content">
                 <div id="news" class="mdl-layout__tab-panel is-active">
+                    
+                    <div id="cards">
+                        
+                    </div>
+
                     <div class="mdl-grid">
+
                         <div class="news-card mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
                             <div class="mdl-card__title">
                                 <h2 class="mdl-card__title-text">Конец эпохи динамических языков</h2>
@@ -184,8 +228,75 @@
             </main>
         </div>
     </div>
-    <!--build:js assets/js/bundle.min.js -->
-    <script src="./node_modules/material-design-lite/dist/material.js"></script>
-    <!--endbuild-->
+
+    <div class="app" id="app"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <script src="https://fb.me/react-with-addons-0.14.3.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.min.js"></script>
+
+    <script type="text/babel">    
+        class NewsCard extends React.Component {  
+            render() {
+                return (
+                        <div className="news-card mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+                            <div className="mdl-card__title">
+                                <h2 className="mdl-card__title-text">Конец эпохи динамических языков</h2>
+                                <a className="news-card__title-link mdl-color-text--primary" href="">habrahabr.ru</a>
+                                <div className="mdl-layout-spacer"></div>
+                                <div className="mdl-typography--subhead-color-contrast mdl-color-text--grey-600">2015-11-26 23:00:34</div>
+                            </div>
+                            <div className="mdl-card__supporting-text">
+                                <div className="news_card__details">сегодня в 13:08 Несколько последних…</div>
+                                <div className="news-card__links">
+                                    <a className="mdl-button mdl-color-text--grey-700 mdl-button--icon" href="">
+                                        <i className="material-icons" role="presentation">expand_more</i>    
+                                    </a>
+                                    <div className="mdl-layout-spacer"></div>
+                                    <a className="mdl-color-text--grey-600" href="">
+                                        Легкая версия
+                                    </a>                                    
+                                </div>
+                            </div>
+                             <div className="news_card__actions mdl-card__actions mdl-card--border">
+                                <div>
+                                    <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                        В гиковский выпуск
+                                    </a>
+                                    <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--accent">
+                                        Сделать текущим
+                                    </a>
+                                </div>
+                                <div className="mdl-layout-spacer"></div>
+                                <div>
+                                    <button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i className="material-icons" role="presentation">arrow_upward</i>
+                                    </button>
+                                    <button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i className="material-icons" role="presentation">arrow_downward</i>
+                                    </button>
+                                    <button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i className="material-icons" role="presentation">delete</i>    
+                                    </button>                                    
+                                </div>
+                            </div>
+                        </div>
+                );
+            }
+        }
+
+        class News extends React.Component {  
+            render() {
+                return (
+                    <div className="mdl-grid">
+                        <NewsCard/>
+                    </div
+                );
+            }
+        }
+
+        ReactDOM.render(<News/>, document.getElementById('cards') );
+    </script>
 </body>
 </html>
