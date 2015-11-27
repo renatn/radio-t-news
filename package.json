@@ -1,0 +1,30 @@
+{
+  "name": "radio-t-news",
+  "version": "1.0.0",
+  "description": "Web UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server",
+    "npm-win-fix": "mkdir -p /home/vagrant/node_modules && ln -s /home/vagrant/node_modules /vagrant/node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renatn/radio-t-news"
+  },
+  "keywords": [
+    "web",
+    "radio-t"	
+  ],
+  "author": "Renat Nasyrov",
+  "license": "ISC",
+  "dependencies": {
+    "material-design-lite": "^1.0.6",
+    "superagent": "^1.4.0"
+  },
+  "devDependencies": {
+    "style-loader": "^0.12.4",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
+  }
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="APP Client">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>News Radio-T</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color -) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,thin,medium&amp;lang=ru">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!--build:css assets/styles/style.min.css -->
+    <link rel="stylesheet" href="./node_modules/material-design-lite/material.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <!--endbuild-->     
+
+</head>
+<body class="app mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout__container">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-tabs mdl-js-tabs">
+            <header class="app-header mdl-layout__header mdl-color--primary">
+                <div class="mdl-layout__header-row">
+                    <span class="mdl-layout-title">Новости для Radio-T</span>
+                    <div class="mdl-layout-spacer"></div>
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" href="">Обновить базу</a>
+                        <a class="mdl-navigation__link" href="">Выход</a>
+                    </nav>
+                </div>
+                <div class="mdl-layout__tab-bar-container">
+                    <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark mdl-js-ripple-effect--ignore-events"> 
+                        <a href="#news" class="mdl-layout__tab is-active">Темы</a>
+                        <a href="#feeds" class="mdl-layout__tab">Фиды</a>
+                        <a href="#prev" class="mdl-layout__tab">Темы прошлого выпуска</a>
+                        <a href="#geek" class="mdl-layout__tab" href="">Темы гиковского выпуска</a>
+                    </div>
+                </div>
+                <button id="add" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent">+</button>
+            </header>
+            <main class="app-layout mdl-layout__content">
+                <div id="news" class="mdl-layout__tab-panel is-active">
+                    <div class="mdl-grid">
+                        <div class="news-card mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Конец эпохи динамических языков</h2>
+                                <a class="news-card__title-link  mdl-color-text--primary" href="">habrahabr.ru</a>
+                                <div class="mdl-layout-spacer"></div>
+                                <div class="mdl-typography--subhead-color-contrast mdl-color-text--grey-600">2015-11-26 23:00:34</div>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <div class="news_card__details">сегодня в 13:08 Несколько последних…</div>
+                                <div class="news-card__links">
+                                    <a class="mdl-button mdl-color-text--grey-700 mdl-button--icon" href="">
+                                        <i class="material-icons" role="presentation">expand_more</i>    
+                                    </a>
+                                    <div class="mdl-layout-spacer"></div>
+                                    <a class="mdl-color-text--grey-600" href="">
+                                        Легкая версия
+                                    </a>                                    
+                                </div>
+                            </div>
+                             <div class="news_card__actions mdl-card__actions mdl-card--border">
+                                <div>
+                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                        В гиковский выпуск
+                                    </a>
+                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--accent">
+                                        Сделать текущим
+                                    </a>
+                                </div>
+                                <div class="mdl-layout-spacer"></div>
+                                <div>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">arrow_upward</i>
+                                    </button>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">arrow_downward</i>
+                                    </button>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">delete</i>    
+                                    </button>                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="news-card mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">                          
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">The 5 Laws of Software Estimates</h2>
+                                <a class="news-card__title-link mdl-color-text--primary" href="">ardalis.com</a>
+                                <div class="mdl-layout-spacer"></div>
+                                <div class="mdl-typography--subhead-color-contrast mdl-color-text--grey-600">2015-11-26 09:19:32</div>
+                            </div>
+                            <div class="news_card__details mdl-card__supporting-text">                                
+                                <div class="news_card__details">
+                                    Estimates are typically a necessary evil in software development. Unfortunately, people tend to assume that writing new software is like building a house or…
+                                </div>
+                                <div class="news-card__links">
+                                    <a class="mdl-button mdl-color-text--grey-700 mdl-button--icon" href="">
+                                        <i class="material-icons" role="presentation">expand_more</i>    
+                                    </a>
+                                    <div class="mdl-layout-spacer"></div>
+                                    <a class="mdl-color-text--grey-600" href="">
+                                        Легкая версия
+                                    </a>                                    
+                                </div>
+
+                             </div>
+                             <div class="news_card__actions mdl-card__actions mdl-card--border">
+                                <div>
+                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                        В гиковский выпуск
+                                    </a>
+                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--accent">
+                                        Сделать текущим
+                                    </a>
+                                </div>
+                                <div class="mdl-layout-spacer"></div>
+                                <div>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">arrow_upward</i>
+                                    </button>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">arrow_downward</i>
+                                    </button>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">delete</i>    
+                                    </button>                                    
+                                </div>      
+                            </div>                        
+                        </div>
+
+                        <div class="news-card mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">                          
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Clash of the public cloud Titans: AWS vs Microsoft vs Google vs IBM </h2>
+                                <div class="mdl-layout-spacer"></div>
+                                <div class="mdl-typography--subhead-color-contrast mdl-color-text--grey-600">2015-11-26 03:34:09</div>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <div class="news_card__details">
+                                    Unlimited storage and computing power. On tap. What’s not to like? Hyperbole is hard to avoid, but it’s no exaggeration to say that public cloud services may be…
+                                </div>
+                            </div>
+                             <div class="news_card__actions mdl-card__actions mdl-card--border">
+                                <div>
+                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                        В гиковский выпуск
+                                    </a>
+                                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--accent">
+                                        Сделать текущим
+                                    </a>
+                                </div>
+                                <div class="mdl-layout-spacer"></div>
+                                <div>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">arrow_upward</i>
+                                    </button>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">arrow_downward</i>
+                                    </button>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                        <i class="material-icons" role="presentation">delete</i>    
+                                    </button>                                    
+                                </div>      
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <!--build:js assets/js/bundle.min.js -->
+    <script src="./node_modules/material-design-lite/dist/material.js"></script>
+    <!--endbuild-->
+</body>
+</html>

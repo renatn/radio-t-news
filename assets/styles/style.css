@@ -1,0 +1,48 @@
+.app #add {
+	position: absolute;
+	z-index: 999;
+	right: 40px;
+	bottom: -24px;
+}
+
+.app-layout {
+	max-width: 960px;
+	margin: 0 auto;
+	padding-top: 24px;
+	width: 100%;
+	flex-shrink: 0;
+	display: block;
+}
+
+.app-header {
+	position: relative;
+}
+
+.app .news-card {
+	min-height: 168px;
+}
+
+.app .mdl-layout__tab-bar {
+	width: 100%;
+	padding: 0 0 0 16px;
+}
+
+.app .news_card__details {
+	font-size: 16px;
+}
+
+.app .news_card__actions {
+	display: flex;
+}
+
+.app .news-card__links {
+	display: flex;
+	margin-top: 16px;
+}
+
+.app .news-card__title-link {
+	padding-left: 16px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
