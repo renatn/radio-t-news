@@ -27,12 +27,6 @@
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
 
     <style type="text/css">
-     .app #add {
-            position: absolute;
-            z-index: 999;
-            right: 40px;
-            bottom: -24px;
-        }
         .app-layout {
             max-width: 960px;
             margin: 0 auto;
@@ -51,6 +45,12 @@
             width: 100%;
             padding: 0 0 0 16px;
         }
+        .app .news-card__ts {
+            align-self: flex-start;
+            white-space: nowrap;
+            line-height: 28px;
+        }
+
         .app .news_card__details {
             font-size: 16px;
         }
@@ -62,10 +62,37 @@
             margin-top: 16px;
         }
         .app .news-card__title-link {
-            padding-left: 16px;
+            padding: 0 16px;
             font-size: 14px;
             text-decoration: none;
+            align-self: flex-start;
+            line-height: 28px;
         }
+
+        .app .news-card__image {
+            float: right;
+        }
+
+        .app .news-card__content {
+            display: none;;
+            height: 0;
+            transition: height 0.5s;
+        }
+
+        .app .news-card__content--expanded .news-card__content {
+            display: block;
+            height: 100%;
+        }
+
+        .app .news-card__content--expanded .news-card__expand-icon {
+            transform: rotate(180deg);
+        }
+
+
+        .app .news-card .mdl-card__supporting-text {
+            width: 95%;
+        }
+
     </style>
 
 </head>
@@ -77,6 +104,7 @@
                     <span class="mdl-layout-title">Новости для Radio-T</span>
                     <div class="mdl-layout-spacer"></div>
                     <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" href="#current">Текущая тема</a>
                         <a class="mdl-navigation__link" href="">Обновить базу</a>
                         <a class="mdl-navigation__link" href="">Выход</a>
                     </nav>
@@ -89,17 +117,18 @@
                         <a href="#geek" class="mdl-layout__tab" href="">Темы гиковского выпуска</a>
                     </div>
                 </div>
-                <button id="add" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent">+</button>
             </header>
             <main class="app-layout mdl-layout__content">
                 <div id="news" class="mdl-layout__tab-panel is-active">
+                </div>
+                <div id="feeds" class="mdl-layout__tab-panel">
+                    
                 </div>
             </main>
         </div>
     </div>
 
-    <div class="app" id="app"></div>
-
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://wzrd.in/standalone/superagent@latest"></script>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
@@ -108,25 +137,45 @@
 
     <script type="text/babel">    
         class NewsCard extends React.Component {  
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    expanded: false
+                }
+            }
+
+            handleExpand(e) {
+                e.preventDefault();               
+                this.setState({expanded: !this.state.expanded});
+            }
+
             render() {
+                let cardClass = 'news-card mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp';
+                if (this.props.news.active) {
+                    cardClass += ' mdl-color--orange-100';
+                }
+
                 return (
-                        <div className="news-card mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+                        <div className={cardClass} id={this.props.news.active ? 'current' : ''}>
                             <div className="mdl-card__title">
                                 <h2 className="mdl-card__title-text">{this.props.news.title}</h2>
-                                <a className="news-card__title-link mdl-color-text--primary" href="">habrahabr.ru</a>
+                                <a className="news-card__title-link mdl-color-text--primary" href={this.props.news.link} target="_blank">{this.props.news.source}</a>
                                 <div className="mdl-layout-spacer"></div>
-                                <div className="mdl-typography--subhead-color-contrast mdl-color-text--grey-600">2015-11-26 23:00:34</div>
+                                <div className="news-card__ts mdl-color-text--grey-600">{this.props.news.ts}</div>
                             </div>
-                            <div className="mdl-card__supporting-text">
+                            <div className={this.state.expanded ? 'mdl-card__supporting-text news-card__content--expanded' : 'mdl-card__supporting-text'}>
+                                <div className={!!this.props.news.pic ? 'news-card__image' : 'hidden'}>
+                                    <img src={this.props.news.pic} width="128"/>
+                                </div>
                                 <div className="news_card__details">{this.props.news.snippet}</div>
                                 <div className="news-card__links">
-                                    <a className="mdl-button mdl-color-text--grey-700 mdl-button--icon" href="">
-                                        <i className="material-icons" role="presentation">expand_more</i>    
+                                    <a className="mdl-color-text--grey-700" href="" onClick={this.handleExpand.bind(this)}>
+                                        <i className="material-icons news-card__expand-icon" role="presentation">expand_more</i>    
                                     </a>
-                                    <div className="mdl-layout-spacer"></div>
-                                    <a className="mdl-color-text--grey-600" href="">
-                                        Легкая версия
-                                    </a>                                    
+                                </div>
+                                <div className="news-card__content">
+                                   <div dangerouslySetInnerHTML={{__html: this.props.news.content}}/>
                                 </div>
                             </div>
                              <div className="news_card__actions mdl-card__actions mdl-card--border">
@@ -168,7 +217,22 @@
                 superagent
                     .get('http://master.radio-t.com:8778/api/v1/news')
                     .end((err, res) => {
-                        this.setState({news: res.body, loading: false})
+                        console.log(res.body);
+
+                        const hostname = (url) => {
+                            const parser = document.createElement('a');
+                            parser.href = url;
+                            return parser.hostname;
+                        }     
+
+
+                        const news = res.body.map(n => {
+                            return {
+                                ...n,
+                                source: hostname(n.link)
+                            }
+                        });
+                        this.setState({news: news, loading: false})
                     });
 
             }
@@ -177,7 +241,7 @@
                 const news = this.state.news.map(n => <NewsCard news={n}/>);
                 return (
                     <div className="mdl-grid">
-                        {news}
+                        {this.state.loading ? <div className="mdl-cell mdl-cell--12-col"><div className="mdl-spinner mdl-js-spinner is-active"></div></div> : news }
                     </div>
                 );
             }
