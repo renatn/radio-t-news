@@ -42,7 +42,7 @@ export default class NewsCard extends React.Component {
                     <div className={!!this.props.news.pic ? 'news-card__image' : 'hidden'}>
                         <img src={this.props.news.pic} width="128"/>
                     </div>
-                    <div className="news_card__details">{this.props.news.snippet}</div>
+                    <div className="news_card__details"><div dangerouslySetInnerHTML={{__html: this.props.news.snippet}}/></div>
                     <div className="news-card__links">
                         <a className="mdl-color-text--grey-700" href="" onClick={this.handleExpand}>
                             <i className="material-icons news-card__expand-icon" role="presentation">expand_more</i>    
