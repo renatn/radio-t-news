@@ -11,7 +11,7 @@ module.exports = {
 
   entry: {
     app: './app/main.js',
-    vendor: ['react', 'flux']
+    vendor: ['react']
   },
 
   output: {
