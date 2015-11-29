@@ -6,24 +6,29 @@
     flex-shrink: 0;
     display: block;
 }
+
 .app-header {
     position: relative;
 }
+
 .app .news-card {
     min-height: 168px;
 }
-.app .mdl-layout__tab-bar {
-    width: 100%;
-    padding: 0 0 0 16px;
+
+.app .mdl-layout__tab-bar-button {
+    background-color: rgb(25,118,210) !important;
 }
+
 .app .news-card__ts {
     align-self: flex-start;
     white-space: nowrap;
     line-height: 28px;
+    font-size: 14px;
 }
 
 .app .news_card__details {
     font-size: 16px;
+    padding-right: 144px;
 }
 .app .news_card__actions {
     display: flex;
@@ -58,7 +63,6 @@
 .app .news-card__content--expanded .news-card__expand-icon {
     transform: rotate(180deg);
 }
-
 
 .app .news-card .mdl-card__supporting-text {
     width: 95%;

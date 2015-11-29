@@ -31,35 +31,41 @@
 
 </head>
 <body class="app mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-    <div class="mdl-layout__container">
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-tabs mdl-js-tabs">
-            <header class="app-header mdl-layout__header mdl-color--primary">
-                <div class="mdl-layout__header-row">
-                    <span class="mdl-layout-title">Новости для Radio-T</span>
-                    <div class="mdl-layout-spacer"></div>
-                    <nav class="mdl-navigation">
-                        <a class="mdl-navigation__link" href="#current">Текущая тема</a>
-                        <a class="mdl-navigation__link" href="">Обновить базу</a>
-                        <a class="mdl-navigation__link" href="">Выход</a>
-                    </nav>
-                </div>
-                <div class="mdl-layout__tab-bar-container">
-                    <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark mdl-js-ripple-effect--ignore-events"> 
-                        <a href="#news" class="mdl-layout__tab is-active">Темы</a>
-                        <a href="#feeds" class="mdl-layout__tab">Фиды</a>
-                        <a href="#prev" class="mdl-layout__tab">Темы прошлого выпуска</a>
-                        <a href="#geek" class="mdl-layout__tab" href="">Темы гиковского выпуска</a>
-                    </div>
-                </div>
-            </header>
-            <main class="app-layout mdl-layout__content">
-                <div id="news" class="mdl-layout__tab-panel is-active">
-                </div>
-                <div id="feeds" class="mdl-layout__tab-panel">
-                    
-                </div>
-            </main>
+   
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Новости для Radio-T</span>
+          <div class="mdl-layout-spacer"></div>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="#current">Текущая тема</a>
+                <a class="mdl-navigation__link" href="">Обновить базу</a>
+                <a class="mdl-navigation__link" href="">Выход</a>
+            </nav>
         </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+          <a href="#news-tab" class="mdl-layout__tab is-active">ВСЕ ТЕМЫ</a>
+          <a href="#scroll-tab-2" class="mdl-layout__tab">Гиковские темы</a>
+          <a href="#scroll-tab-3" class="mdl-layout__tab">Удаленные темы</a>
+          <a href="#scroll-tab-4" class="mdl-layout__tab">Фиды</a>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="news-tab">
+          <div class="app-layout" id="news">
+              
+          </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-2">
+          <div class="app-layout"><h2>В разработке...</h2></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-3">
+          <div class="app-layout"><h3>В разработке...</h3></div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-4">
+          <div class="app-layout"><h4>В разработке...</h4></div>
+        </section>
+      </main>
     </div>
 
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
