@@ -1,0 +1,18 @@
+- name: Install build tools
+  action: apt pkg=build-essential state=installed
+
+- name: Import the NodeSource GPG key into apt
+  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
+
+- name: Add the node.js PPA for precise
+  apt_repository: repo='deb https://deb.nodesource.com/node_0.12 {{ ansible_distribution_release }} main' state=present
+
+- name: Install NodeJs and npm
+  action: apt pkg=nodejs state=installed update-cache=yes
+
+- name: Install Gulp
+  npm: name=gulp global=yes state=present
+
+- name: Install Webpack-Dev-Server node.js package
+  npm: name=webpack-dev-server global=yes state=present
+
