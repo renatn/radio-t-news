@@ -17,7 +17,7 @@ const datetime = (ts) => {
 
 export default class API {
 
-	static news(username, password) {
+	static news() {
   		return new Promise((resolve, reject) => {
 	        request
 	            .get(PREFIX_API+'/news')
@@ -34,38 +34,42 @@ export default class API {
     	});
     }
 
-    static makeNewsActive(id) {
+    static makeNewsActive(id, username = 'test', password = 'test') {
   		return new Promise((resolve, reject) => {
 	        request
 	            .put(PREFIX_API+'/news/active/'+id)
+	            .auth(username, password)
 	            .end((err, res) => {
 	                resolve(res.body);
 	            });
     	});
     }
 
-    static toggleNewsGeekFlag(id, isGeek) {
+    static toggleNewsGeekFlag(id, isGeek, username = 'test', password = 'test') {
     	const endpoint = isGeek ? 'nogeek' : 'geek';
   		return new Promise((resolve, reject) => {
 	        request
 	            .put(PREFIX_API+'/news/'+endpoint+'/'+id)
+	            .auth(username, password)
 	            .end((err, res) => {
 	                resolve(res.body);
 	            });
     	});
     }
 
-    static toggleNewsDeletedFlag(id, isDeleted) {
+    static toggleNewsDeletedFlag(id, isDeleted, username = 'test', password = 'test') {
   		return new Promise((resolve, reject) => {
 			if (isDeleted) {
 		        request
 		            .put(PREFIX_API+'/news/undelete/'+id)
+    	            .auth(username, password)
 		            .end((err, res) => {
 		                resolve(res.body);
 		            });
 	 		} else {
 		        request
 		            .del(PREFIX_API+'/news/'+id)
+    	            .auth(username, password)
 		            .end((err, res) => {
 		                resolve(res.body);
 		            });
