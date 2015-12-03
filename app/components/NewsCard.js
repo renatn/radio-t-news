@@ -63,7 +63,7 @@ export default class NewsCard extends React.Component {
                     <div className="mdl-layout-spacer"></div>
                     <div>
                         <button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                            <i className="material-icons" role="presentation">delete</i>    
+                            {this.props.news.del ? <i className="material-icons" role="presentation">restore</i> : <i className="material-icons" role="presentation">delete</i>}
                         </button>                                    
                         <button className="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i className="material-icons" role="presentation">arrow_upward</i>
