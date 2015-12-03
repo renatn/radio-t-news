@@ -17,10 +17,11 @@ const datetime = (ts) => {
 
 export default class API {
 
-	static news() {
+	static news(deleted = false) {
+		const endpoint = deleted ? '/news/del' : '/news';
   		return new Promise((resolve, reject) => {
 	        request
-	            .get(PREFIX_API+'/news')
+	            .get(PREFIX_API+endpoint)
 	            .end((err, res) => {
 	                const news = res.body.map(n => {
 	                    return {
